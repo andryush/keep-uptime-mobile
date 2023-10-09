@@ -16,7 +16,7 @@ const InitialLayout = () => {
     if (IS_SIGNED_IN && !inProtectedRoutesGroup) {
       router.replace('/home');
     } else if (!IS_SIGNED_IN) {
-      router.replace('/login');
+      router.replace('/sign-in');
     }
   }, [IS_SIGNED_IN]);
 

@@ -3,9 +3,9 @@ import { Stack } from 'expo-router';
 const PublicLayout = () => {
   return (
     <Stack>
-      <Stack.Screen name={'login'} options={{ headerShown: false }} />
+      <Stack.Screen name={'sign-in'} options={{ headerShown: false }} />
       <Stack.Screen
-        name={'register'}
+        name={'verification'}
         options={{
           headerTitle: '',
           gestureEnabled: true,
@@ -15,17 +15,7 @@ const PublicLayout = () => {
         }}
       />
       <Stack.Screen
-        name={'verifyEmail'}
-        options={{
-          headerTitle: '',
-          gestureEnabled: true,
-          headerBackButtonMenuEnabled: true,
-          headerTransparent: true,
-          headerTintColor: '#FFF',
-        }}
-      />
-      <Stack.Screen
-        name={'forgotPassword'}
+        name={'forgot-password'}
         options={{
           headerTitle: 'Forgot Password',
           gestureEnabled: true,
