@@ -21,32 +21,33 @@ const Verification = () => {
           source={require('../../assets/images/verification-bg.jpg')}
           alt={'verification-background'}
         />
-        <Box width={'100%'} marginTop={'70%'}></Box>
-        <BlurredContainer header={'Verification'}>
-          <Input variant="outline" size="xl" bgColor={'$white'}>
-            <InputField
-              type={'text'}
-              placeholder={'Verification Code'}
-              autoCapitalize={'none'}
-            />
-          </Input>
-          <Button
-            size="xl"
-            variant="solid"
-            action="primary"
-            onPress={() => router.push('/new-password')}>
-            <ButtonText>Verify</ButtonText>
-          </Button>
-          <Box>
+        <Box>
+          <BlurredContainer header={'Verification'} marginTop={0}>
+            <Input variant="outline" size="xl" bgColor={'$white'}>
+              <InputField
+                type={'text'}
+                placeholder={'Verification Code'}
+                autoCapitalize={'none'}
+              />
+            </Input>
             <Button
-              size="md"
-              variant="link"
+              size="xl"
+              variant="solid"
               action="primary"
-              onPress={() => router.push('/forgot-password')}>
-              <ButtonText color={'#fff'}>Back to Forgot Password</ButtonText>
+              onPress={() => router.push('/new-password')}>
+              <ButtonText>Verify</ButtonText>
             </Button>
-          </Box>
-        </BlurredContainer>
+            <Box>
+              <Button
+                size="md"
+                variant="link"
+                action="primary"
+                onPress={() => router.push('/forgot-password')}>
+                <ButtonText color={'#fff'}>Back to Forgot Password</ButtonText>
+              </Button>
+            </Box>
+          </BlurredContainer>
+        </Box>
       </Box>
     </KeyboardAvoidingWrapper>
   );

@@ -43,11 +43,7 @@ const SignIn = () => {
           <Input variant="outline" size="xl" bgColor={'$white'}>
             <InputField type={'password'} placeholder={'Password'} />
           </Input>
-          <Button
-            size="xl"
-            variant="solid"
-            action="primary"
-            onPress={() => router.push('/home')}>
+          <Button size="xl" variant="solid" action="primary" onPress={() => {}}>
             <ButtonText>Sign In</ButtonText>
           </Button>
           <Box>
