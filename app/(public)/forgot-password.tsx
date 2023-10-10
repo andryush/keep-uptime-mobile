@@ -19,7 +19,7 @@ const ForgotPassword = () => {
           size={'full'}
           position={'absolute'}
           source={require('../../assets/images/forgot-bg.jpg')}
-          alt={'login-background'}
+          alt={'forgot-background'}
         />
         <Box width={'100%'} marginTop={'70%'}></Box>
         <BlurredContainer header={'Reset Password'}>

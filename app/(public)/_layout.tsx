@@ -24,6 +24,16 @@ const PublicLayout = () => {
           headerTintColor: '#696cff',
         }}
       />
+      <Stack.Screen
+        name={'new-password'}
+        options={{
+          headerTitle: '',
+          gestureEnabled: true,
+          headerBackButtonMenuEnabled: true,
+          headerTransparent: true,
+          headerTintColor: '#696cff',
+        }}
+      />
     </Stack>
   );
 };
