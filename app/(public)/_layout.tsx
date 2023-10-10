@@ -11,15 +11,17 @@ const PublicLayout = () => {
           gestureEnabled: true,
           headerBackButtonMenuEnabled: true,
           headerTransparent: true,
-          headerTintColor: '#FFF',
+          headerTintColor: '#696cff',
         }}
       />
       <Stack.Screen
         name={'forgot-password'}
         options={{
-          headerTitle: 'Forgot Password',
+          headerTitle: '',
           gestureEnabled: true,
           headerBackButtonMenuEnabled: true,
+          headerTransparent: true,
+          headerTintColor: '#696cff',
         }}
       />
     </Stack>
