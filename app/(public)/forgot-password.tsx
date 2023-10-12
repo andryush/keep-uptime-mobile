@@ -5,13 +5,23 @@ import {
   Button,
   ButtonText,
   Image,
+  Text,
 } from '@gluestack-ui/themed';
 import { router } from 'expo-router';
+import { useForm, Controller } from 'react-hook-form';
 
 import BlurredContainer from '../../components/BlurredContainer';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper';
 
 const ForgotPassword = () => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const handleReset = () => router.push('/verification');
+
   return (
     <KeyboardAvoidingWrapper>
       <Box width={'100%'} height={'100%'} bgColor={'$black'}>
@@ -24,17 +34,40 @@ const ForgotPassword = () => {
         <Box>
           <BlurredContainer header={'Reset Password'} marginTop={0}>
             <Input variant="outline" size="xl" bgColor={'$white'}>
-              <InputField
-                type={'text'}
-                placeholder={'Email'}
-                autoCapitalize={'none'}
+              <Controller
+                name={'email'}
+                control={control}
+                rules={{
+                  required: {
+                    value: true,
+                    message: 'This field is required',
+                  },
+                  pattern: {
+                    value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+                    message: 'Please enter correct email',
+                  },
+                }}
+                defaultValue={''}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <InputField
+                    type={'text'}
+                    placeholder={'Email'}
+                    autoCapitalize={'none'}
+                    onChangeText={onChange}
+                    onBlur={onBlur}
+                    value={value}
+                  />
+                )}
               />
             </Input>
+            {errors?.email && (
+              <Text color={'red'}>{errors?.email?.message?.toString()}</Text>
+            )}
             <Button
               size="xl"
               variant="solid"
               action="primary"
-              onPress={() => router.push('/verification')}>
+              onPress={handleSubmit(handleReset)}>
               <ButtonText>Reset</ButtonText>
             </Button>
             <Box>
