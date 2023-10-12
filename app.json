@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "keep-uptime-mobile",
-    "slug": "keep-uptime-mobile",
+    "slug": "keep-uptime",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -16,7 +16,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.andryush.keepuptime"
     },
     "android": {
       "adaptiveIcon": {
@@ -34,6 +35,21 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "21d4a988-cabb-48fc-9aa0-2c308bc08283"
+      }
+    },
+    "owner": "andryush",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/21d4a988-cabb-48fc-9aa0-2c308bc08283"
     }
   }
 }
