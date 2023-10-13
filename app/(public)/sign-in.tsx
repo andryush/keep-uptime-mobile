@@ -7,8 +7,13 @@ import {
   HStack,
   Image,
   Text,
+  InputIcon,
+  EyeIcon,
+  EyeOffIcon,
+  InputSlot,
 } from '@gluestack-ui/themed';
 import { router } from 'expo-router';
+import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
 import Logo from '../../assets/svgs/logo.svg';
@@ -16,6 +21,7 @@ import BlurredContainer from '../../components/BlurredContainer';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper';
 
 const SignIn = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const {
     control,
     handleSubmit,
@@ -24,6 +30,10 @@ const SignIn = () => {
 
   const handleLogin = () => {
     router.push('/home');
+  };
+
+  const handleShowPassword = () => {
+    setShowPassword(prev => !prev);
   };
 
   return (
@@ -92,7 +102,7 @@ const SignIn = () => {
               }}
               render={({ field: { onChange, onBlur, value } }) => (
                 <InputField
-                  type={'password'}
+                  type={showPassword ? 'text' : 'password'}
                   placeholder={'Password'}
                   onBlur={onBlur}
                   onChangeText={onChange}
@@ -100,6 +110,12 @@ const SignIn = () => {
                 />
               )}
             />
+            <InputSlot pr="$3" onPress={handleShowPassword}>
+              <InputIcon
+                color={'$primary500'}
+                as={showPassword ? EyeIcon : EyeOffIcon}
+              />
+            </InputSlot>
           </Input>
           {errors?.password && (
             <Text color={'red'}>{errors?.password?.message?.toString()}</Text>
