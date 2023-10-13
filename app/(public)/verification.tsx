@@ -22,8 +22,6 @@ const Verification = () => {
 
   const handleVerify = () => router.push('/new-password');
 
-  console.log(errors);
-
   return (
     <KeyboardAvoidingWrapper>
       <Box width={'100%'} height={'100%'} bgColor={'$black'}>
