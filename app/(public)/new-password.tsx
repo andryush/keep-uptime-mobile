@@ -6,14 +6,22 @@ import {
   ButtonText,
   Image,
   Text,
+  InputSlot,
+  InputIcon,
+  EyeIcon,
+  EyeOffIcon,
 } from '@gluestack-ui/themed';
 import { router } from 'expo-router';
+import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
 import BlurredContainer from '../../components/BlurredContainer';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper';
 
 const NewPassword = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const {
     control,
     handleSubmit,
@@ -22,6 +30,12 @@ const NewPassword = () => {
   } = useForm();
 
   const handleChangePassword = () => router.push('/sign-in');
+
+  const handleShowPassword = (type: string) => {
+    return type === 'password'
+      ? setShowPassword(prev => !prev)
+      : setShowConfirmPassword(prev => !prev);
+  };
 
   return (
     <KeyboardAvoidingWrapper>
@@ -51,7 +65,7 @@ const NewPassword = () => {
                 }}
                 render={({ field: { onChange, onBlur, value } }) => (
                   <InputField
-                    type={'password'}
+                    type={showPassword ? 'text' : 'password'}
                     placeholder={'New password'}
                     onBlur={onBlur}
                     onChangeText={onChange}
@@ -59,6 +73,12 @@ const NewPassword = () => {
                   />
                 )}
               />
+              <InputSlot pr="$3" onPress={() => handleShowPassword('password')}>
+                <InputIcon
+                  color={'$primary500'}
+                  as={showPassword ? EyeIcon : EyeOffIcon}
+                />
+              </InputSlot>
             </Input>
             {errors?.password && (
               <Text color={'red'}>{errors?.password?.message?.toString()}</Text>
@@ -82,7 +102,7 @@ const NewPassword = () => {
                 }}
                 render={({ field: { onChange, onBlur, value } }) => (
                   <InputField
-                    type={'password'}
+                    type={showConfirmPassword ? 'text' : 'password'}
                     placeholder={'Confirm new password'}
                     onBlur={onBlur}
                     onChangeText={onChange}
@@ -90,6 +110,14 @@ const NewPassword = () => {
                   />
                 )}
               />
+              <InputSlot
+                pr="$3"
+                onPress={() => handleShowPassword('confirmPassword')}>
+                <InputIcon
+                  color={'$primary500'}
+                  as={showConfirmPassword ? EyeIcon : EyeOffIcon}
+                />
+              </InputSlot>
             </Input>
             {errors?.confirm && (
               <Text color={'red'}>{errors?.confirm?.message?.toString()}</Text>
