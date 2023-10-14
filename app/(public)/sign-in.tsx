@@ -11,6 +11,7 @@ import {
   EyeIcon,
   EyeOffIcon,
   InputSlot,
+  Spinner,
 } from '@gluestack-ui/themed';
 import { router } from 'expo-router';
 import { useState } from 'react';
@@ -22,6 +23,8 @@ import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper';
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const {
     control,
     handleSubmit,
@@ -29,7 +32,11 @@ const SignIn = () => {
   } = useForm();
 
   const handleLogin = () => {
-    router.push('/home');
+    setLoading(true);
+    setTimeout(() => {
+      router.push('/home');
+      setLoading(false);
+    }, 3000);
   };
 
   const handleShowPassword = () => {
@@ -124,8 +131,10 @@ const SignIn = () => {
             size="xl"
             variant="solid"
             action="primary"
+            isDisabled={loading}
             onPress={handleSubmit(handleLogin)}>
             <ButtonText>Sign In</ButtonText>
+            <Spinner animating={loading} ml={'$2'} color={'#FFF'} />
           </Button>
           <Box>
             <HStack>

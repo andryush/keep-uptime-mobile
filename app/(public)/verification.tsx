@@ -6,21 +6,30 @@ import {
   ButtonText,
   Image,
   Text,
+  Spinner,
 } from '@gluestack-ui/themed';
 import { router } from 'expo-router';
+import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 import BlurredContainer from '../../components/BlurredContainer';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper';
 
 const Verification = () => {
+  const [loading, setLoading] = useState(false);
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const handleVerify = () => router.push('/new-password');
+  const handleVerify = () => {
+    setLoading(true);
+    setTimeout(() => {
+      router.push('/new-password');
+      setLoading(false);
+    }, 3000);
+  };
 
   return (
     <KeyboardAvoidingWrapper>
@@ -73,8 +82,10 @@ const Verification = () => {
               size="xl"
               variant="solid"
               action="primary"
+              isDisabled={loading}
               onPress={handleSubmit(handleVerify)}>
               <ButtonText>Verify</ButtonText>
+              <Spinner animating={loading} ml={'$2'} color={'#FFF'} />
             </Button>
             <Box>
               <Button

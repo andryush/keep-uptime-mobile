@@ -10,6 +10,7 @@ import {
   InputIcon,
   EyeIcon,
   EyeOffIcon,
+  Spinner,
 } from '@gluestack-ui/themed';
 import { router } from 'expo-router';
 import { useState } from 'react';
@@ -21,6 +22,7 @@ import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper';
 const NewPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const {
     control,
@@ -29,7 +31,13 @@ const NewPassword = () => {
     watch,
   } = useForm();
 
-  const handleChangePassword = () => router.push('/sign-in');
+  const handleChangePassword = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      router.push('/sign-in');
+    }, 3000);
+  };
 
   const handleShowPassword = (type: string) => {
     return type === 'password'
@@ -126,8 +134,10 @@ const NewPassword = () => {
               size="xl"
               variant="solid"
               action="primary"
+              isDisabled={loading}
               onPress={handleSubmit(handleChangePassword)}>
               <ButtonText>Change</ButtonText>
+              <Spinner animating={loading} ml={'$2'} color={'#FFF'} />
             </Button>
           </BlurredContainer>
         </Box>
