@@ -14,9 +14,12 @@ import { useForm, Controller } from 'react-hook-form';
 
 import BlurredContainer from '../../components/BlurredContainer';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper';
+import { useCustomToast } from '../../hooks/useCustomToast';
 
 const ForgotPassword = () => {
   const [loading, setLoading] = useState(false);
+  const { showSuccessToast } = useCustomToast();
+
   const {
     control,
     handleSubmit,
@@ -28,6 +31,7 @@ const ForgotPassword = () => {
     setTimeout(() => {
       router.push('/verification');
       setLoading(false);
+      showSuccessToast('Please check your email');
     }, 3000);
   };
 

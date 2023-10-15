@@ -18,11 +18,13 @@ import { useForm, Controller } from 'react-hook-form';
 
 import BlurredContainer from '../../components/BlurredContainer';
 import KeyboardAvoidingWrapper from '../../components/KeyboardAvoidingWrapper';
+import { useCustomToast } from '../../hooks/useCustomToast';
 
 const NewPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { showSuccessToast } = useCustomToast();
 
   const {
     control,
@@ -36,6 +38,7 @@ const NewPassword = () => {
     setTimeout(() => {
       setLoading(false);
       router.push('/sign-in');
+      showSuccessToast('Password changed');
     }, 3000);
   };
 
